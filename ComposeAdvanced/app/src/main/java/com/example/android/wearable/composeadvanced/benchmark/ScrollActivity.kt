@@ -19,8 +19,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -28,7 +30,12 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
+import androidx.wear.compose.foundation.ExpandableState
+import androidx.wear.compose.foundation.expandableItem
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
+import androidx.wear.compose.foundation.rememberExpandableState
+import androidx.wear.compose.material.Chip
+import androidx.wear.compose.material.CompactChip
 import androidx.wear.compose.material.Switch
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.ToggleChip
@@ -71,7 +78,9 @@ class ScrollActivity : ComponentActivity() {
 
 @Composable
 fun SomeScreenContent() {
-    val checked = remember { mutableStateMapOf<Int, Boolean>() }
+    val statesX = (1..20).map { key(it) { rememberExpandableState() } }
+
+    val states = remember { statesX }
 
     ScalingLazyColumn(
         Modifier
@@ -80,27 +89,22 @@ fun SomeScreenContent() {
                 contentDescription = "ScalingLazyColumn"
             }
     ) {
-        items(20) { item ->
-            val itemChecked = checked.getOrDefault(item, false)
-
-            ToggleChip(
-                checked = itemChecked,
-                onCheckedChange = { isChecked ->
-                    checked[item] = isChecked
-                },
-                label = {
-                    Text("Item $item")
-                },
-                toggleControl = {
-                    Switch(
-                        checked = itemChecked,
-                        modifier = Modifier.semantics {
-                            this.contentDescription =
-                                if (itemChecked) "Checked" else "Unchecked"
-                        }
-                    )
+        states.forEachIndexed { index, expandableState ->
+            expandableItem(state = expandableState) { expanded ->
+                if (expanded) {
+                    Chip(
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = { expandableState.expanded = !expandableState.expanded },
+                        label = {
+                            Text("Item $index")
+                        })
+                } else {
+                    CompactChip(
+                        onClick = { expandableState.expanded = !expandableState.expanded }, label = {
+                            Text("Item $index")
+                        })
                 }
-            )
+            }
         }
     }
 }
