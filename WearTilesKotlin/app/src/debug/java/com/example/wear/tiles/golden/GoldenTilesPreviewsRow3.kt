@@ -15,22 +15,17 @@
  */
 package com.example.wear.tiles.golden
 
-import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import com.example.wear.tiles.R
-import com.example.wear.tiles.tools.WearLargeRoundDevicePreview
-import com.example.wear.tiles.tools.WearSmallRoundDevicePreview
 import com.example.wear.tiles.tools.emptyClickable
 import com.google.android.horologist.compose.tools.LayoutRootPreview
-import com.google.android.horologist.compose.tools.buildDeviceParameters
 import com.google.android.horologist.tiles.images.drawableResToImageResource
 
 /**
  * b/238560022 misaligned because we can't add an offset, small preview is clipped
  */
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun Weather() {
     val context = LocalContext.current
@@ -56,8 +51,7 @@ fun Weather() {
 /**
  * b/238556504 alignment doesn't match figma.
  */
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun News() {
     val context = LocalContext.current
@@ -75,8 +69,7 @@ fun News() {
 /**
  * b/238571095 Alignment doesn't match Figma
  */
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun Calendar() {
     val context = LocalContext.current
@@ -92,8 +85,7 @@ fun Calendar() {
     )
 }
 
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun Social() {
     val context = LocalContext.current
@@ -125,8 +117,7 @@ fun Social() {
     }
 }
 
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun Media() {
     val context = LocalContext.current
@@ -157,5 +148,3 @@ fun Media() {
         )
     }
 }
-
-private fun Context.deviceParams() = buildDeviceParameters(resources)

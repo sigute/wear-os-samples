@@ -18,16 +18,25 @@ package com.example.wear.tiles.golden
 import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.wear.compose.ui.tooling.preview.WearPreviewSquare
 import com.example.wear.tiles.R
-import com.example.wear.tiles.tools.WearLargeRoundDevicePreview
-import com.example.wear.tiles.tools.WearSmallRoundDevicePreview
 import com.example.wear.tiles.tools.emptyClickable
 import com.google.android.horologist.compose.tools.LayoutRootPreview
 import com.google.android.horologist.compose.tools.buildDeviceParameters
 import com.google.android.horologist.tiles.images.drawableResToImageResource
 
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@Preview(
+    device = "id:wearos_rect",
+    backgroundColor = 0xff000000,
+    showBackground = true,
+    group = "Devices - Small Square",
+    showSystemUi = true
+)
+annotation class WearPreviewRect
+
+@WearPreviewRect
+@WearPreviewSquare
 @Composable
 fun Goal() {
     val context = LocalContext.current
@@ -36,8 +45,7 @@ fun Goal() {
     )
 }
 
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun WorkoutButtons() {
     val context = LocalContext.current
@@ -67,8 +75,7 @@ fun WorkoutButtons() {
     }
 }
 
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun WorkoutLargeChip() {
     val context = LocalContext.current
@@ -82,8 +89,7 @@ fun WorkoutLargeChip() {
     )
 }
 
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun Run() {
     val context = LocalContext.current
@@ -98,8 +104,7 @@ fun Run() {
     )
 }
 
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun Ski() {
     val context = LocalContext.current
@@ -112,11 +117,10 @@ fun Ski() {
     )
 }
 
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun SleepTracker() {
     // TODO: This tile doesn't use standard components; we can achieve it by drawing on a Canvas (Compose's DrawScope) then converting it to a bitmap using Horologist
 }
 
-private fun Context.deviceParams() = buildDeviceParameters(resources)
+fun Context.deviceParams() = buildDeviceParameters(resources)

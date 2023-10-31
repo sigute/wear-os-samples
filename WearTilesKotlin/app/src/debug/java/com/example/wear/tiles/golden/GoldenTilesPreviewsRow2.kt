@@ -15,22 +15,17 @@
  */
 package com.example.wear.tiles.golden
 
-import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import com.example.wear.tiles.R
-import com.example.wear.tiles.tools.WearLargeRoundDevicePreview
-import com.example.wear.tiles.tools.WearSmallRoundDevicePreview
 import com.example.wear.tiles.tools.emptyClickable
 import com.google.android.horologist.compose.tools.LayoutRootPreview
-import com.google.android.horologist.compose.tools.buildDeviceParameters
 import com.google.android.horologist.tiles.images.drawableResToImageResource
 
 /**
  * b/238548541 (internal bug - the spacing doesn't match Figma)
  */
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun HeartRateSimple() {
     val context = LocalContext.current
@@ -44,15 +39,13 @@ fun HeartRateSimple() {
     )
 }
 
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun HeartRateGraph() {
     // TODO: not trivial, ataul has dibs though please!
 }
 
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun MeditationChips() {
     val context = LocalContext.current
@@ -84,8 +77,7 @@ fun MeditationChips() {
     }
 }
 
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun MeditationButtons() {
     val context = LocalContext.current
@@ -101,8 +93,7 @@ fun MeditationButtons() {
     )
 }
 
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun Timer() {
     val context = LocalContext.current
@@ -120,8 +111,7 @@ fun Timer() {
     )
 }
 
-@WearSmallRoundDevicePreview
-@WearLargeRoundDevicePreview
+@WearPreviewRect
 @Composable
 fun Alarm() {
     val context = LocalContext.current
@@ -136,5 +126,3 @@ fun Alarm() {
         )
     )
 }
-
-private fun Context.deviceParams() = buildDeviceParameters(resources)

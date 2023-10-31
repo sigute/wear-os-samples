@@ -16,6 +16,10 @@
 package com.example.wear.tiles.golden
 
 import android.content.Context
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
+import androidx.wear.compose.material.Text
+import androidx.wear.compose.ui.tooling.preview.WearPreviewSmallRound
 import androidx.wear.protolayout.ColorBuilders
 import androidx.wear.protolayout.DeviceParametersBuilders.DeviceParameters
 import androidx.wear.protolayout.material.CircularProgressIndicator
@@ -60,3 +64,13 @@ private fun blueOnTranslucentWhite() = ProgressIndicatorColors(
     /* trackColor = */
     ColorBuilders.argb(GoldenTilesColors.White10Pc)
 )
+
+@WearPreviewSmallRound
+@Composable
+fun GoalPreview() {
+    val context = LocalContext.current
+//    LayoutRootPreview(
+//        Goal.layout(context, context.deviceParams(), steps = 5168, goal = 8000)
+//    )
+    Text("Test")
+}
