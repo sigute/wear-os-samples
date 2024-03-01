@@ -105,6 +105,8 @@ dependencies {
 
     coreLibraryDesugaring libs.desugar.jdk.libs
 
+    debugImplementation "com.google.accompanist:accompanist-testharness:0.34.0"
+
     // Testing
     testImplementation libs.androidx.ui.test.junit4
     testImplementation libs.junit

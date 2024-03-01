@@ -126,7 +126,7 @@ fun GreetingScreen(greetingName: String, onShowList: () -> Unit) {
 }
 
 @Composable
-fun ListScreen() {
+fun ListScreen(header: String? = null) {
     val columnState = rememberColumnState()
 
     ScreenScaffold(scrollState = columnState) {
@@ -142,7 +142,7 @@ fun ListScreen() {
         ) {
             item {
                 ListHeader {
-                    Text("Header")
+                    Text(header ?: "Header")
                 }
             }
             item {
