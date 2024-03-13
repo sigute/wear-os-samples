@@ -35,8 +35,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
@@ -49,6 +51,7 @@ import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.PositionIndicator
 import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.Text
+import androidx.wear.compose.material.TimeText
 import androidx.wear.compose.material.TitleCard
 import androidx.wear.compose.material.scrollAway
 import androidx.wear.compose.material.dialog.Dialog
@@ -126,7 +129,7 @@ fun GreetingScreen(greetingName: String, onShowList: () -> Unit) {
      * see d.android.com/wear/compose.
      */
     Scaffold(
-        timeText = { ResponsiveFixedSourceTimeText(modifier = Modifier.scrollAway(scrollState)) },
+        timeText = { TimeText(modifier = Modifier.scrollAway(scrollState)) },
         positionIndicator = { PositionIndicator(scrollState) }
     ) {
         Column(
@@ -156,7 +159,7 @@ fun ListScreen() {
 
     Scaffold(
         timeText = {
-            ResponsiveFixedSourceTimeText(
+            TimeText(
                 modifier = Modifier.scrollAway(
                     listState,
                     itemIndex = 1,
