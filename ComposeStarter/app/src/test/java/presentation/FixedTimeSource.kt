@@ -15,18 +15,19 @@
  */
 package com.example.android.wearable.composestarter.presentation
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+<<<<<<<< HEAD:ComposeStarter/app/src/main/java/com/example/android/wearable/composestarter/presentation/ResponsiveFixedSourceTimeText.kt
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
+========
+>>>>>>>> main:ComposeStarter/app/src/test/java/presentation/FixedTimeSource.kt
 import androidx.wear.compose.material.TimeSource
-import androidx.wear.compose.material.TimeText
 
 /**
- * Provides a [TimeText] composable that applies the correct percentage-based padding.
- * TODO: This composable should be removed when ResponsiveTimeText is available in Horologist 0.5.x
+ * Provides a fixed time source for use with [ResponsiveTimeText]
  */
+<<<<<<<< HEAD:ComposeStarter/app/src/main/java/com/example/android/wearable/composestarter/presentation/ResponsiveFixedSourceTimeText.kt
 @Composable
 fun ResponsiveFixedSourceTimeText(modifier: Modifier = Modifier) {
     val height = LocalConfiguration.current.screenHeightDp
@@ -39,4 +40,9 @@ fun ResponsiveFixedSourceTimeText(modifier: Modifier = Modifier) {
                 @Composable get() = "10:10"
         }
     )
+========
+val FixedTimeSource = object : TimeSource {
+    override val currentTime: String
+        @Composable get() = "10:10"
+>>>>>>>> main:ComposeStarter/app/src/test/java/presentation/FixedTimeSource.kt
 }
