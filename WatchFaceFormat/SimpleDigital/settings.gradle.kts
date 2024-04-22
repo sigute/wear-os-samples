@@ -30,3 +30,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "SimpleDigital"
 include(":watchface")
+include(":watchface-test")
