@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@file:OptIn(ExperimentalHorologistApi::class, ExperimentalWearFoundationApi::class,
+@file:OptIn(
+    ExperimentalHorologistApi::class, ExperimentalWearFoundationApi::class,
     ExperimentalFoundationApi::class
 )
 
@@ -23,14 +24,21 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.wear.compose.foundation.ExperimentalWearFoundationApi
+import androidx.wear.compose.foundation.RequestFocusWhenActive
 import androidx.wear.compose.material.ChipDefaults
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.Text
@@ -49,6 +57,7 @@ import com.google.android.horologist.compose.material.Chip
 import com.google.android.horologist.compose.material.ListHeaderDefaults.firstItemPadding
 import com.google.android.horologist.compose.material.ResponsiveListHeader
 import com.google.android.horologist.compose.pager.PagerScreen
+import com.google.android.horologist.compose.rotaryinput.rotaryWithScroll
 
 /**
  * Simple "Hello, World" app meant as a starting point for a new project using Compose for Wear OS.
@@ -101,26 +110,36 @@ fun SettingsScreen() {
             last = ItemType.Text
         )
     )
+    val focusRequester = remember { FocusRequester() }
     ScreenScaffold(scrollState = columnState) {
-        ScalingLazyColumn(columnState = columnState) {
-
+        androidx.wear.compose.foundation.lazy.ScalingLazyColumn(
+            modifier = Modifier
+                .rotaryWithScroll(columnState, focusRequester)
+                .fillMaxWidth(),
+            state = columnState.state,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             item {
                 ResponsiveListHeader(
                     contentPadding = firstItemPadding(),
                 ) {
-                    Text("Settings")
+                    Text(
+                        modifier = Modifier.padding(vertical = 12.dp),
+                        text = "Settings"
+                    )
                 }
             }
 
             item {
                 Text(
-                    "Version:\n 2024.05.14-wear-release(242053)",
-                    modifier = Modifier.listTextPadding(),
+                    "Version:\n2024.05.14-wear-release(242053)",
+                    modifier = Modifier.padding(vertical = 28.dp, horizontal = 12.dp),
                     textAlign = TextAlign.Center
                 )
             }
         }
     }
+    RequestFocusWhenActive(focusRequester)
 }
 
 @Composable
